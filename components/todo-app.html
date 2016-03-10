@@ -1,4 +1,5 @@
 <link rel="import" href="todo-list.html">
+<link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-connection.html">
 <link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-login.html">
 
 <dom-module id="todo-app">
@@ -15,18 +16,26 @@
 			}
 		</style>
 		
-		<div id="todo-app" class$="{{connection.state}}">
+		<div id="todo-app" class$="[[connectionState]]">
 			
-			<ds-login 
-				auto-login 
+			<ds-connection 
 				url="localhost:6020" 
-				connection="{{connection}}">
-			</ds-login>
+				state="{{connectionState}}"
+				ds={{ds}}>
+			</ds-connection>
+
+			<template is="dom-if" if="[[ds]]">
+
+				<ds-login 
+					auto-login
+					ds="[[ds]]">
+				</ds-login>
 			
-			<template is="dom-if" if="[[connection.loggedIn]]">
 				<todos-list 
-					name="polymer_example/todos">
+					name="polymer_example/todos"
+					ds="[[ds]]">
 				</todos-list>
+			
 			</template>
 
 		</div>

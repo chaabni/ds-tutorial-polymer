@@ -1,8 +1,10 @@
+<link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-connection.html">
 <link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-record.html">
 
 <dom-module id="todo-record">
 	<template>
-		<ds-record name="[[name]]" data="{{todo}}" >
+		<ds-connection ds="{{ds}}"></ds-connection>
+		<ds-record name="[[name]]" data="{{todo}}" ds="[[ds]]">
 			<input type="text" value="{{todo.name::input}}">
 			<span class$="fa fa-fw [[checkedClass]]" on-click="checkHandler">
 		</ds-record>
@@ -18,9 +20,6 @@
 					computed: '_checkType( data )'
 				}
 			},
-			behaviors: [
-				Polymer.DSRecordBehaviour
-			],
 			checkHandler: function() {
 				this.set( 
 					'data.checked', 

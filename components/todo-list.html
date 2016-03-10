@@ -1,9 +1,10 @@
+<link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-connection.html">
 <link rel="import" href="../bower_components/deepstream.io-tools-polymer/ds-list.html">
 <link rel="import" href="todo-record.html">
 
 <dom-module id="todos-list">
 	<template>
-		<ds-list name="[[name]]" entries="{{todos}}" >
+		<ds-list name="[[name]]" entries="{{todos}}" ds="[[ds]]" >
 			<ul>
 				<template 
 					is="dom-repeat" 
@@ -34,10 +35,10 @@
 				name: String
 			},
 			addEntryHandler: function( event ) {
-				var recordId =  'polymer-example/' + ds.getUid();
+				var recordId =  'polymer-example/' + this.ds.getUid();
 				var todo = this.$$( '.new-record-input' ).value;
-				var todoRecord = ds.record.getRecord( recordId );
-				var todoList = ds.record.getList( this.name );
+				var todoRecord = this.ds.record.getRecord( recordId );
+				var todoList = this.ds.record.getList( this.name );
 
 				todoRecord.set( { name: todo } )
 				todoRecord.whenReady( function() {
@@ -46,8 +47,8 @@
 			},
 			removeEntryHandler: function( event ) {
 				var recordId = event.model.recordId;
-				var todoRecord = ds.record.getRecord( recordId );
-				var todoList = ds.record.getList( this.name );
+				var todoRecord = this.ds.record.getRecord( recordId );
+				var todoList = this.ds.record.getList( this.name );
 				
 				todoList.removeEntry( recordId );
 				todoRecord.delete();
