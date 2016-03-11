@@ -40,7 +40,7 @@
 				var todoRecord = this.ds.record.getRecord( recordId );
 				var todoList = this.ds.record.getList( this.name );
 
-				todoRecord.set( { name: todo } )
+				todoRecord.set( { name: todo, checked: false } )
 				todoRecord.whenReady( function() {
 					todoList.addEntry( recordId );
 				} );
