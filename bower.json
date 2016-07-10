@@ -7,9 +7,7 @@
     "polymer",
     "deepstream.io"
   ],
-  "authors": [
-    "Yasser Fadl"
-  ],
+  "authors": "deepstreamHub GmbH",
   "license": "MIT",
   "homepage": "",
   "private": true,
